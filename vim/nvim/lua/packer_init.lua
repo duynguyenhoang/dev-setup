@@ -91,6 +91,36 @@ return packer.startup(function(use)
     },
   }
 
+  use {
+    'RishabhRD/nvim-lsputils',
+    requires = {
+      {'RishabhRD/popfix'},
+    },
+  }
+
+  use {
+    'ojroques/nvim-lspfuzzy',
+    requires = {
+      {'junegunn/fzf'},
+      {'junegunn/fzf.vim'},  -- to enable preview (optional)
+    },
+  }
+
+  use 'folke/lsp-colors.nvim'
+
+  --
+  use({
+    "glepnir/lspsaga.nvim",
+    branch = "main",
+    config = function()
+        local saga = require("lspsaga")
+
+        saga.init_lsp_saga({
+            -- your configuration
+        })
+    end,
+  })
+
   -- Statusline
   use {
     'feline-nvim/feline.nvim',
@@ -102,7 +132,7 @@ return packer.startup(function(use)
     'lewis6991/gitsigns.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
     config = function()
-      require('gitsigns').setup{}
+      require('gitsigns').setup()
     end
   }
 
@@ -111,12 +141,6 @@ return packer.startup(function(use)
     'goolord/alpha-nvim',
     requires = { 'kyazdani42/nvim-web-devicons' },
   }
-
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if packer_bootstrap then
-    require('packer').sync()
-  end
 
   -- nvim-numbertoggle
   use {
@@ -134,14 +158,10 @@ return packer.startup(function(use)
     end
   }
 
+  -- fzf full text search
   use { 'vijaymarupudi/nvim-fzf' }
   use { 'junegunn/fzf', run = ":call fzf#install()" }
   use { 'junegunn/fzf.vim' }
-
-  -- use {'neoclide/coc.nvim', branch = 'master', run = 'yarn install --frozen-lockfile'}
-  -- use {
-  --   'fannheyward/coc-pyright', run = 'yarn install --frozen-lockfile'
-  -- }
 
   use({
     "iamcco/markdown-preview.nvim",
@@ -157,11 +177,41 @@ return packer.startup(function(use)
 --    }
 --  }
 
+  -- testing
   use {
     "klen/nvim-test",
     config = function()
       require('nvim-test').setup()
     end
   }
+
+  -- git
+  use {
+    'TimUntersberger/neogit',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'sindrets/diffview.nvim'
+    }
+  }
+
+  use 'karb94/neoscroll.nvim'
+
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
+
+  -- Automatically set up your configuration after cloning packer.nvim
+  -- Put this at the end after all plugins
+  if packer_bootstrap then
+    require('packer').sync()
+  end
 
 end)

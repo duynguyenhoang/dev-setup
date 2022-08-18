@@ -7,18 +7,19 @@ say_hello:
 ## backup: 	Backup nvim config
 .PHONY: backup
 backup:
-	mv ~/.config/nvim ~/.config/nvim.backup
+	@if [ -d "~/.config/nvim" ]; then mv ~/.config/nvim ~/.config/nvim.backup; fi
 
 ## configs: 	Apply configs
 .PHONY: configs
 configs: backup
-	make _sync_lua_config
+	make sync_configs
 	make _pyright
 	make _packer
 
 # #############################
-_sync_lua_config:
-	# mkdir ~/.config/nvim/
+## sync_configs	Sync configs files only
+.PHONY: sync_configs
+sync_configs:
 	cp -rf ./nvim ~/.config/
 
 _pyright:
