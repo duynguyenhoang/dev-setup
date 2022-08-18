@@ -10,6 +10,10 @@ local function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+-- import with: require('keymaps').keymap
+local M = {}
+M.keymap = map
+
 -- Change leader to a comma
 vim.g.mapleader = ','
 
@@ -67,3 +71,5 @@ map('n', '<leader>z', ':TagbarToggle<CR>')          -- open/close
 
 -- FZF
 map('n', '<leader>f', ':FZF<CR>')          -- open fzf
+
+return M
