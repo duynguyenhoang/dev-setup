@@ -1,7 +1,7 @@
 -include ./../_commons/share.Makefile
 
 # Add or remove apps here
-ALL_AUTO_APPS := zsh lazygit jq npm git cowsay ripgrep neovim
+ALL_AUTO_APPS := vifm zsh lazygit jq npm git cowsay ripgrep neovim
 ALL_MANUAL_APPS := fzf ohmyzsh
 
 ifeq ($(UNAME), Darwin)

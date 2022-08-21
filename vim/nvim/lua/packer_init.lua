@@ -208,6 +208,11 @@ return packer.startup(function(use)
     end
   }
 
+  -- vim surround
+  use { 'tpope/vim-surround' }
+  use { 'norcalli/nvim-colorizer.lua' }
+  use { 'ekalinin/Dockerfile.vim' }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
