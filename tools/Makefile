@@ -1,7 +1,7 @@
 -include ./../_commons/share.Makefile
 
 # Add or remove apps here
-ALL_AUTO_APPS := vifm zsh lazygit jq npm git cowsay ripgrep neovim
+ALL_AUTO_APPS := graphviz vifm zsh lazygit jq npm git cowsay ripgrep neovim
 ALL_MANUAL_APPS := fzf ohmyzsh
 
 ifeq ($(UNAME), Darwin)
@@ -55,8 +55,13 @@ install-others:
 		printf $(_TITLE) "Installing [$${app}]" &&  \
 		(ls ./others/$${app}.sh >> /dev/null 2>&1 && ./others/$${app}.sh) || printf $(_ERROR) "Installation script [$${app}] not found"; \
 	done
-	@if [ -f ~/.tmux.conf ]; do \
-		echo "Your ~/.tmux.conf file exists. Moving it to ~/.tmux.conf.backup"
-		mv ~/.tmux.conf ~/.tmux.conf.backup
-	fi
-	@cp ./others/tmux.conf ~/.tmux.conf
+	make config-tmux
+
+## config-tmux	Config your tmux
+.PHONY: config-tmux
+config-tmux:
+	# @if [ -f ~/.tmux.conf ]; do \
+	# 	echo "Your ~/.tmux.conf file exists. Moving it to ~/.tmux.conf.backup"
+	# 	mv ~/.tmux.conf ~/.tmux.conf.backup
+	# fi
+	cp ./others/tmux.conf ~/.tmux.conf

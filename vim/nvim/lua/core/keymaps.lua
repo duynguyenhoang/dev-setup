@@ -72,4 +72,6 @@ map('n', '<leader>z', ':TagbarToggle<CR>')          -- open/close
 -- FZF
 map('n', '<leader>f', ':FZF<CR>')          -- open fzf
 
+map('n', '<leader>b', ':Buffers<CR>')          -- buffer
+
 return M
