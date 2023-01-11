@@ -15,7 +15,7 @@ local M = {}
 M.keymap = map
 
 -- Change leader to a comma
-vim.g.mapleader = ','
+vim.g.mapleader = "{{ .Env.VIM_MAP_LEADER }}"
 
 -----------------------------------------------------------
 -- Neovim shortcuts

@@ -12,37 +12,40 @@
 -- See the README of the selected color scheme for the instruction
 -- to use.
 -- e.g.: require('color_scheme').setup{}, vim.cmd('color_scheme') ...
-
+{{ if eq .Env.VIM_THEME "onedark" }}
 -----------------------------------------------------------
 -- onedark theme
 -----------------------------------------------------------
 require('onedark').setup {
   -- styles: dark, darker, cool, deep, warm, warmer, light
-  style = 'darker',
+  style = "{{ .Env.VIM_THEME_STYLE }}",
   colors = { fg = '#b2bbcc' }, --default: #a0a8b7
 }
 
+{{ else if eq .Env.VIM_THEME "github-theme" }}
 -----------------------------------------------------------
 -- Github theme
 -----------------------------------------------------------
--- require("github-theme").setup({
---   theme_style = "dark", -- Can be: dark, dimmed, dark_default, dark_colorblind, light, light_default, light_colorblind
---   function_style = "italic",
---   sidebars = {"qf", "vista_kind", "terminal", "packer"},
+require("github-theme").setup({
+  theme_style = '{{ .Env.VIM_THEME_STYLE }}',
+  -- Can be: dark, dimmed, dark_default, dark_colorblind, light, light_default, light_colorblind
+  function_style = "italic",
+  sidebars = {"qf", "vista_kind", "terminal", "packer"},
 
---   -- Change the "hint" color to the "orange" color, and make the "error" color bright red
---   colors = {hint = "orange", error = "#ff0000"},
+  -- Change the "hint" color to the "orange" color, and make the "error" color bright red
+  colors = {hint = "orange", error = "#ff0000"},
 
---   -- Overwrite the highlight groups
---   overrides = function(c)
---     return {
---       htmlTag = {fg = c.red, bg = "#282c34", sp = c.hint, style = "underline"},
---       DiagnosticHint = {link = "LspDiagnosticsDefaultHint"},
---       -- this will remove the highlight groups
---       TSField = {},
---     }
---   end
--- })
+  -- Overwrite the highlight groups
+  overrides = function(c)
+    return {
+      htmlTag = {fg = c.red, bg = "#282c34", sp = c.hint, style = "underline"},
+      DiagnosticHint = {link = "LspDiagnosticsDefaultHint"},
+      -- this will remove the highlight groups
+      TSField = {},
+    }
+  end
+})
+{{ end }}
 
 --[[
 Statusline color schemes.
@@ -59,6 +62,10 @@ different.
 --]]
 local M = {}
 
+-----------------------------------------------------------
+-- Theme colors
+-----------------------------------------------------------
+{{ if eq .Env.VIM_THEME_COLOR "onedark_dark" }}
 -- Theme: OneDark (dark)
 -- Colors: https://github.com/navarasu/onedark.nvim/blob/master/lua/onedark/palette.lua
 M.onedark_dark = {
@@ -71,7 +78,7 @@ M.onedark_dark = {
   orange = '#d19a66',
   red = '#e86671',
 }
-
+{{ else if eq .Env.VIM_THEME_COLOR "monokai" }}
 -- Theme: Monokai (classic)
 -- Colors: https://github.com/tanvirtin/monokai.nvim/blob/master/lua/monokai.lua
 M.monokai = {
@@ -84,7 +91,7 @@ M.monokai = {
   orange = '#fd971f',
   red = '#e95678',
 }
-
+{{ else if eq .Env.VIM_THEME_COLOR "rose_pine" }}
 -- Theme: Rosé Pine (main)
 -- Colors: https://github.com/rose-pine/neovim/blob/main/lua/rose-pine/palette.lua
 -- color names are adapted to the formats above
@@ -98,7 +105,7 @@ M.rose_pine = {
   orange = '#2a2837',
   red = '#ebbcba',
 }
-
+{{ else if eq .Env.VIM_THEME_COLOR "github_dark" }}
 -- Theme: github_dark
 -- Colors: https://github.com/projekt0n/github-nvim-theme/blob/main/lua/github-theme/palette/dark.lua
 -- color names are adapted to the formats above
@@ -112,6 +119,7 @@ M.github_dark= {
   orange = '#d18616',
   red = '#ea4a5a',
 }
+{{ else if eq .Env.VIM_THEME_COLOR "github_light_colorblind" }}
 -- Theme: github_light_colorblind
 -- Colors: https://github.com/projekt0n/github-nvim-theme/blob/main/lua/github-theme/palette/light_colorblind.lua
 -- color names are adapted to the formats above
@@ -125,5 +133,6 @@ M.github_light_colorblind= {
   orange = '#d18616',
   red = '#d73a49',
 }
+{{ end }}
 
 return M
