@@ -74,6 +74,7 @@ return packer.startup(function(use)
   -- Color schemes
   use 'navarasu/onedark.nvim'
   use 'tanvirtin/monokai.nvim'
+  use({'projekt0n/github-nvim-theme'})
   use { 'rose-pine/neovim', as = 'rose-pine' }
 
   -- LSP
@@ -144,10 +145,7 @@ return packer.startup(function(use)
 
   -- nvim-numbertoggle
   use {
-    "sitiom/nvim-numbertoggle",
-    config = function()
-      require("numbertoggle").setup()
-    end
+    "sitiom/nvim-numbertoggle"
   }
 
   use {

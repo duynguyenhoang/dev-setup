@@ -3,7 +3,7 @@
 -----------------------------------------------------------
 
 local function map(mode, lhs, rhs, opts)
-  local options = { noremap = true, silent = true }
+  local options = { noremap=true, silent=true }
   if opts then
     options = vim.tbl_extend('force', options, opts)
   end
@@ -57,13 +57,17 @@ map('i', '<leader>s', '<C-c>:w<CR>')
 -- Close all windows and exit from Neovim with <leader> and q
 map('n', '<leader>q', ':qa!<CR>')
 
+-----------------------------------------------------------
+-- Applications and Plugins shortcuts
+-----------------------------------------------------------
+
 -- Terminal mappings
 map('n', '<C-t>', ':Term<CR>', { noremap = true })  -- open
 map('t', '<Esc>', '<C-\\><C-n>')                    -- exit
 
 -- NvimTree
 map('n', '<C-n>', ':NvimTreeToggle<CR>')            -- open/close
--- map('n', '<leader>f', ':NvimTreeRefresh<CR>')       -- refresh
+map('n', '<leader>f', ':NvimTreeRefresh<CR>')       -- refresh
 map('n', '<leader>n', ':NvimTreeFindFile<CR>')      -- search file
 
 -- Tagbar
@@ -71,7 +75,6 @@ map('n', '<leader>z', ':TagbarToggle<CR>')          -- open/close
 
 -- FZF
 map('n', '<leader>f', ':FZF<CR>')          -- open fzf
-
 map('n', '<leader>b', ':Buffers<CR>')          -- buffer
 
 return M
