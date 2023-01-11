@@ -7,13 +7,13 @@
 
 -- Keybindings are defined in `core/keymaps.lua`:
 -- https://github.com/kyazdani42/nvim-tree.lua#keybindings
-
 local status_ok, nvim_tree = pcall(require, 'nvim-tree')
 if not status_ok then
   return
 end
 
--- Call setup:
+-- Call setup.
+-- See: `:help nvim-tree` 4. SETUP
 -- Each of these are documented in `:help nvim-tree.OPTION_NAME`
 -- nested options are documented by accessing them with `.` (eg: `:help nvim-tree.view.mappings.list`)
 nvim_tree.setup {
@@ -25,37 +25,42 @@ nvim_tree.setup {
   hijack_unnamed_buffer_when_opening = false,
   ignore_buffer_on_setup = false,
   open_on_setup = true,
-  open_on_setup_file = false,
-  open_on_tab = true,
-  ignore_buf_on_tab_change = {},
+  open_on_setup_file = true, -- open nvim-tree when you open any file
   sort_by = "name",
   root_dirs = {},
   prefer_startup_root = false,
   sync_root_with_cwd = false,
   reload_on_bufenter = false,
   respect_buf_cwd = false,
-  on_attach = "disable", -- function(bufnr). If nil, will use the deprecated mapping strategy
-  remove_keymaps = false, -- boolean (disable totally or not) or list of key (lhs)
+  on_attach = "disable",
+  remove_keymaps = false,
+  select_prompts = false,
   view = {
     adaptive_size = false,
     centralize_selection = false,
     width = 32,
-    height = 30,
     hide_root_folder = false,
     side = "left",
     preserve_window_proportions = false,
     number = false,
     relativenumber = false,
     signcolumn = "yes",
+    mappings = {
+      custom_only = false,
+      list = {
+        -- user mappings go here
+      },
+    },
     float = {
       enable = false,
+      quit_on_focus_loss = true,
       open_win_config = {
-      relative = "editor",
-      border = "rounded",
-      width = 30,
-      height = 30,
-      row = 1,
-      col = 1,
+        relative = "editor",
+        border = "rounded",
+        width = 30,
+        height = 30,
+        row = 1,
+        col = 1,
       },
     },
   },
@@ -65,7 +70,8 @@ nvim_tree.setup {
     highlight_git = false,
     full_name = false,
     highlight_opened_files = "none",
-    root_folder_modifier = ":~",
+    root_folder_label = ":~:s?$?/..?",
+    indent_width = 2,
     indent_markers = {
       enable = false,
       inline_arrows = true,
@@ -73,6 +79,7 @@ nvim_tree.setup {
         corner = "└",
         edge = "│",
         item = "│",
+        bottom = "─",
         none = " ",
       },
     },
@@ -132,6 +139,11 @@ nvim_tree.setup {
   diagnostics = {
     enable = false,
     show_on_dirs = false,
+    debounce_delay = 50,
+    severity = {
+      min = vim.diagnostic.severity.HINT,
+      max = vim.diagnostic.severity.ERROR
+    },
     icons = {
       hint = "",
       info = "",
@@ -147,6 +159,7 @@ nvim_tree.setup {
   filesystem_watchers = {
     enable = true,
     debounce_delay = 50,
+    ignore_dirs = {},
   },
   git = {
     enable = true,
@@ -198,6 +211,16 @@ nvim_tree.setup {
     prefix = "[FILTER]: ",
     always_show_folders = true,
   },
+  tab = {
+    sync = {
+      open = false,
+      close = false,
+      ignore = {},
+    },
+  },
+  notify = {
+    threshold = vim.log.levels.INFO,
+  },
   log = {
     enable = false,
     truncate = false,
@@ -212,4 +235,4 @@ nvim_tree.setup {
       watcher = false,
     },
   },
-}
+} -- END_OPTS

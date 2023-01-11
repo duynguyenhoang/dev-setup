@@ -74,6 +74,7 @@ return packer.startup(function(use)
   -- Color schemes
   use 'navarasu/onedark.nvim'
   use 'tanvirtin/monokai.nvim'
+  use({'projekt0n/github-nvim-theme'})
   use { 'rose-pine/neovim', as = 'rose-pine' }
 
   -- LSP
@@ -144,10 +145,7 @@ return packer.startup(function(use)
 
   -- nvim-numbertoggle
   use {
-    "sitiom/nvim-numbertoggle",
-    config = function()
-      require("numbertoggle").setup()
-    end
+    "sitiom/nvim-numbertoggle"
   }
 
   use {
@@ -205,6 +203,18 @@ return packer.startup(function(use)
         -- or leave it empty to use the default settings
         -- refer to the configuration section below
       }
+    end
+  }
+
+  -- vim surround
+  use { 'tpope/vim-surround' }
+  use { 'norcalli/nvim-colorizer.lua' }
+  use { 'ekalinin/Dockerfile.vim' }
+
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+        require('Comment').setup()
     end
   }
 
