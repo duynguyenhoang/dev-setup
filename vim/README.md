@@ -1,5 +1,4 @@
-Neovim Setup
-============
+# Neovim Setup
 
 Based on https://github.com/brainfucksec/neovim-lua
 
@@ -7,10 +6,13 @@ Based on https://github.com/brainfucksec/neovim-lua
 
 * [neovim 0.8](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 * [fzf](https://github.com/junegunn/fzf)
+* [gomplate](https://github.com/hairyhenderson/gomplate)
 
 ## Install
 
 ```bash
+## Make sure you changed the config
+source ../.env
 make configs
 # Start nvim and sync packages
 nvim +PackerSync
@@ -22,12 +24,12 @@ nvim +PackerSync
 
 Changing theme requires some steps:
 
-- Open file `lua/core/colors.lua`
-    - Enable theme, for example `require('onedark')...`
-    - Define your theme color, following example from `M.onedark_dark`. There is usually color scheme for every theme
-- Open file `lua/core/statusline.lua`
-    - Change line after `Set colorscheme (from core/colors.lua/colorscheme_name)`
-    - For example `local colors = require('core/colors').github_dark`
+* Open file `lua/core/colors.lua`
+  * Enable theme, for example `require('onedark')...`
+  * Define your theme color, following example from `M.onedark_dark`. There is usually color scheme for every theme
+* Open file `lua/core/statusline.lua`
+  * Change line after `Set colorscheme (from core/colors.lua/colorscheme_name)`
+  * For example `local colors = require('core/colors').github_dark`
 
 ### Others
 
@@ -36,4 +38,4 @@ Changing theme requires some steps:
 
 ## TODO
 
-- Automate configuration
+* Automate configuration

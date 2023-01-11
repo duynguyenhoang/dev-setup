@@ -17,7 +17,7 @@ if not status_ok then
 end
 
 -- Set colorscheme (from core/colors.lua/colorscheme_name)
-local colors = require('core/colors').onedark_dark
+local colors = require('core/colors').{{ .Env.VIM_THEME_COLOR }}
 
 local vi_mode_colors = {
   NORMAL = colors.cyan,
