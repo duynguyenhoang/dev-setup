@@ -46,7 +46,7 @@ return packer.startup(function(use)
   use 'wbthomason/packer.nvim' -- packer can manage itself
 
   -- File explorer
-  use 'kyazdani42/nvim-tree.lua'
+  use 'nvim-tree/nvim-tree.lua'
 
   -- Indent line
   use 'lukas-reineke/indent-blankline.nvim'
